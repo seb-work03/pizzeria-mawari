@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seb-work03.github.io/pizzeria-mawari/sitemap.xml
