@@ -6,16 +6,16 @@
 
   <title>Pizzeria Mawari | Menù</title>
   <meta name="description" content="Scopri il menù della Pizzeria Mawari di Senigallia: pizze artigianali, sfiziosità e molto altro. Qualità e gusto ad ogni morso." />
-  <link rel="canonical" href="https://seb-work03.github.io/pizzeria-mawari/" />
+  <link rel="canonical" href="https://www.pizzeria-mawari.it/" />
 
   <link rel="icon" type="image/png" href="pizzeria%20mawari%20favicon.png" />
   <link rel="apple-touch-icon" href="pizzeria%20mawari%20favicon.png" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://seb-work03.github.io/pizzeria-mawari/" />
+  <meta property="og:url" content="https://www.pizzeria-mawari.it/" />
   <meta property="og:title" content="Pizzeria Mawari | Menù" />
   <meta property="og:description" content="Scopri il menù della Pizzeria Mawari di Senigallia: pizze artigianali, sfiziosità e molto altro. Qualità e gusto ad ogni morso." />
-  <meta property="og:image" content="https://seb-work03.github.io/pizzeria-mawari/logo%20pizzeria%20mawari.jpg" />
+  <meta property="og:image" content="https://www.pizzeria-mawari.it/logo%20pizzeria%20mawari.jpg" />
   <meta property="og:image:width" content="1080" />
   <meta property="og:image:height" content="1080" />
   <meta property="og:locale" content="it_IT" />
@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Pizzeria Mawari | Menù" />
   <meta name="twitter:description" content="Scopri il menù della Pizzeria Mawari di Senigallia: pizze artigianali, sfiziosità e molto altro. Qualità e gusto ad ogni morso." />
-  <meta name="twitter:image" content="https://seb-work03.github.io/pizzeria-mawari/logo%20pizzeria%20mawari.jpg" />
+  <meta name="twitter:image" content="https://www.pizzeria-mawari.it/logo%20pizzeria%20mawari.jpg" />
 
   <script type="application/ld+json">
   {
@@ -37,36 +37,130 @@
       "addressCountry": "IT"
     },
     "servesCuisine": "Pizza",
-    "url": "https://seb-work03.github.io/pizzeria-mawari/",
-    "image": "https://seb-work03.github.io/pizzeria-mawari/logo%20pizzeria%20mawari.jpg",
+    "url": "https://www.pizzeria-mawari.it/",
+    "image": "https://www.pizzeria-mawari.it/logo%20pizzeria%20mawari.jpg",
     "hasMenu": {
       "@type": "Menu",
-      "url": "https://seb-work03.github.io/pizzeria-mawari/menu.pdf"
+      "url": "https://www.pizzeria-mawari.it/menu.pdf"
     }
   }
   </script>
 
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #1a1a1a; }
+
+    body {
+      background: #1a1a1a;
+      font-family: sans-serif;
+    }
+
     h1 {
       position: absolute;
       width: 1px; height: 1px;
       overflow: hidden;
       clip: rect(0,0,0,0);
     }
-    #pdf-container {
+
+    /* ── Language selector ── */
+    #lang-screen {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
-      padding: 8px 0;
+      justify-content: center;
+      min-height: 100vh;
+      gap: 40px;
+      padding: 32px 16px;
     }
-    #pdf-container canvas {
-      width: 100%;
-      max-width: 900px;
+
+    #lang-screen img.logo {
+      width: 200px;
+      max-width: 55vw;
+      border-radius: 16px;
+    }
+
+    #lang-title {
+      color: #fff;
+      font-size: clamp(1.1rem, 4vw, 1.5rem);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    #lang-title span {
+      color: #e63946;
+    }
+
+    #flag-row {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flag-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      border-radius: 16px;
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    .flag-btn:hover {
+      background: rgba(255,255,255,0.07);
+      transform: scale(1.08);
+    }
+
+    .flag-btn:active {
+      transform: scale(0.97);
+    }
+
+    .flag-emoji {
+      font-size: clamp(3.5rem, 14vw, 5.5rem);
+      line-height: 1;
       display: block;
     }
+
+    .flag-label {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* ── PDF viewer ── */
+    #viewer-screen {
+      display: none;
+    }
+
+    #back-btn {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 100;
+      background: rgba(230,57,70,0.92);
+      border: none;
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      transition: background 0.15s, transform 0.15s;
+    }
+
+    #back-btn:hover { background: #c1121f; transform: scale(1.04); }
+    #back-btn:active { transform: scale(0.97); }
+
     #loading {
       display: flex;
       flex-direction: column;
@@ -75,10 +169,12 @@
       min-height: 100vh;
       gap: 32px;
     }
+
     #loading img {
       width: 180px;
       max-width: 60vw;
     }
+
     .spinner {
       width: 44px;
       height: 44px;
@@ -87,29 +183,63 @@
       border-radius: 50%;
       animation: spin 0.8s linear infinite;
     }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    #pdf-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 0;
     }
+
+    #pdf-container canvas {
+      width: 100%;
+      max-width: 900px;
+      display: block;
+    }
+
     #download-link {
       display: none;
       color: #e63946;
       text-align: center;
       padding: 20px;
-      font-family: sans-serif;
     }
   </style>
 </head>
 <body>
   <h1>Menù Pizzeria Mawari</h1>
-  <div id="loading">
-    <img src="logo%20pizzeria%20mawari.jpg" alt="Pizzeria Mawari" />
-    <div class="spinner"></div>
-    <p style="color:#fff; font-family:sans-serif; font-size:0.95rem; opacity:0.7;">Caricamento menù…</p>
+
+  <!-- Language selector -->
+  <div id="lang-screen">
+    <img class="logo" src="logo%20pizzeria%20mawari.jpg" alt="Pizzeria Mawari" />
+    <p id="lang-title">Scegli il menù&nbsp;<span>/</span>&nbsp;Choose menu</p>
+    <div id="flag-row">
+      <button class="flag-btn" onclick="openMenu('it')" aria-label="Menù italiano">
+        <span class="flag-emoji">🇮🇹</span>
+        <span class="flag-label">Italiano</span>
+      </button>
+      <button class="flag-btn" onclick="openMenu('en')" aria-label="English menu">
+        <span class="flag-emoji">🇬🇧</span>
+        <span class="flag-label">English</span>
+      </button>
+    </div>
   </div>
-  <div id="pdf-container"></div>
-  <p id="download-link">
-    <a href="menu.pdf">Scarica il menù in PDF</a>
-  </p>
+
+  <!-- PDF viewer -->
+  <div id="viewer-screen">
+    <button id="back-btn" onclick="goBack()">&#8592; Menù</button>
+    <div id="loading">
+      <img src="logo%20pizzeria%20mawari.jpg" alt="Pizzeria Mawari" />
+      <div class="spinner"></div>
+      <p style="color:#fff; font-size:0.95rem; opacity:0.7;" id="loading-text">Caricamento menù…</p>
+    </div>
+    <div id="pdf-container"></div>
+    <p id="download-link">
+      <a id="dl-anchor" href="#">Scarica il menù in PDF</a>
+    </p>
+  </div>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-96WBRB88EC"></script>
@@ -124,6 +254,35 @@
   <script>
     pdfjsLib.GlobalWorkerOptions.workerSrc =
       'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    const PDF_IT = 'menu.pdf';
+    const PDF_EN = 'men%C3%B9%20mawari%20inglese.pdf';
+
+    let currentPdf = null;
+
+    function openMenu(lang) {
+      const pdfUrl = lang === 'en' ? PDF_EN : PDF_IT;
+      const loadingText = lang === 'en' ? 'Loading menu…' : 'Caricamento menù…';
+
+      document.getElementById('lang-screen').style.display = 'none';
+      document.getElementById('viewer-screen').style.display = 'block';
+      document.getElementById('loading').style.display = 'flex';
+      document.getElementById('loading-text').textContent = loadingText;
+      document.getElementById('pdf-container').innerHTML = '';
+      document.getElementById('download-link').style.display = 'none';
+      document.getElementById('dl-anchor').href = pdfUrl;
+
+      gtag('event', 'select_menu_language', { language: lang });
+
+      renderPDF(pdfUrl, lang);
+    }
+
+    function goBack() {
+      document.getElementById('viewer-screen').style.display = 'none';
+      document.getElementById('lang-screen').style.display = 'flex';
+      document.getElementById('pdf-container').innerHTML = '';
+      if (currentPdf) { currentPdf.destroy(); currentPdf = null; }
+    }
 
     async function renderPage(pdf, pageNum, canvas) {
       const page = await pdf.getPage(pageNum);
@@ -141,12 +300,13 @@
       await page.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
     }
 
-    async function renderPDF() {
+    async function renderPDF(pdfUrl, lang) {
       const container = document.getElementById('pdf-container');
       const loading = document.getElementById('loading');
 
       try {
-        const pdf = await pdfjsLib.getDocument({ url: 'menu.pdf', cMapUrl: null }).promise;
+        const pdf = await pdfjsLib.getDocument({ url: pdfUrl, cMapUrl: null }).promise;
+        currentPdf = pdf;
         loading.style.display = 'none';
 
         const dpr = window.devicePixelRatio || 1;
@@ -155,7 +315,6 @@
         const firstViewport = firstPage.getViewport({ scale: baseWidth / firstPage.getViewport({ scale: 1 }).width });
         const pageHeight = firstViewport.height;
 
-        // Crea placeholder per tutte le pagine
         const canvases = [];
         for (let i = 1; i <= pdf.numPages; i++) {
           const canvas = document.createElement('canvas');
@@ -167,10 +326,8 @@
           canvases.push(canvas);
         }
 
-        // Renderizza prima pagina subito
         await renderPage(pdf, 1, canvases[0]);
 
-        // Lazy load le altre con IntersectionObserver
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -186,12 +343,10 @@
         canvases.slice(1).forEach(c => observer.observe(c));
 
       } catch (e) {
-        loading.textContent = 'Impossibile caricare il menù.';
+        loading.style.display = 'none';
         document.getElementById('download-link').style.display = 'block';
       }
     }
-
-    renderPDF();
   </script>
 </body>
 </html>
